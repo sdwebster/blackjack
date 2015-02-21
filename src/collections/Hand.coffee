@@ -5,6 +5,11 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop())
+    if not @isDealer and @busted() then @trigger('gameOver')
+
+  stand: ->
+    console.log 'stand'
+    @trigger('gameOver')
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
@@ -20,4 +25,17 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     [@minScore(), @minScore() + 10 * @hasAce()]
 
+  bestScore: ->
+    @scores()[@scores().length - 1]
+
+  busted: ->
+    @minScore() > 21
+
+  #if this is the dealer hand, it needs to be able to
+  playOut: ->
+    console.log 'playing out dealer hand'
+    # flip first card over
+    @at(0).flip()
+    while (@bestScore() < 17 and not @busted())
+      @hit()
 
