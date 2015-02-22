@@ -4,6 +4,7 @@ class window.Game extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
+    @set 'lowDown', "Let's play some blackjack!"
 
     (@get 'playerHand').on 'gameOver', (->
       console.log 'game is done'
@@ -26,9 +27,11 @@ class window.Game extends Backbone.Model
         if (pScore > dScore)
           lowDown += "Well done!"
         else if (pScore == dScore)
-          lowDown += "It's a tie! Click refresh to play again."
+          lowDown += "It's a tie! Click 'Play Again' to play again."
         else
           lowDown += "Better luck next time!"
+    @set 'lowDown', lowDown
+    @trigger 'gameOver'
 
       # if (@get 'dealerHand').minScore()
     console.log lowDown
