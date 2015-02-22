@@ -8,7 +8,7 @@ class window.Hand extends Backbone.Collection
     if not @isDealer and @busted() then @trigger('gameOver')
 
   stand: ->
-    console.log 'stand'
+    # console.log 'stand'
     @trigger('gameOver')
 
   hasAceShowing: -> @reduce (memo, card) ->
@@ -36,7 +36,7 @@ class window.Hand extends Backbone.Collection
 
   #if this is the dealer hand, it needs to be able to
   playOut: ->
-    console.log 'playing out dealer hand'
+    # console.log 'playing out dealer hand'
     # flip first card over
     @at(0).flip()
     while (@bestScore() < 17 and not @busted())

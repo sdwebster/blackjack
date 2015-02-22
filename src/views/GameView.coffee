@@ -15,7 +15,7 @@ class window.GameView extends Backbone.View
     "gameOver, @model.get 'playerHand')": -> console.log 'the View can see the game end'
 
   newGame: ->
-    console.log 'gameView knows its a new game'
+    # console.log 'gameView knows its a new game'
     @model.initialize();
     @render();
 
@@ -23,7 +23,7 @@ class window.GameView extends Backbone.View
     @render()
     # this feels like cheating. Are you allowed to do this in BBone?
     @model.on 'gameOver', (->
-      console.log 'gameView knows game is done'
+      # console.log 'gameView knows game is done'
       @completeGame()),
       @
 

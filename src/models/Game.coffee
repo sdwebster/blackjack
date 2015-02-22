@@ -7,12 +7,11 @@ class window.Game extends Backbone.Model
     @set 'lowDown', "Let's play some blackjack!"
 
     (@get 'playerHand').on 'gameOver', (->
-      console.log 'game is done'
+      # console.log 'game is done'
       @completeGame()),
       @
 
   completeGame: ->
-    console.log 'time to finish'
     if (@get 'playerHand').busted()
       lowDown = 'You got busted! You lose!'
     else
@@ -34,5 +33,4 @@ class window.Game extends Backbone.Model
     @trigger 'gameOver'
 
       # if (@get 'dealerHand').minScore()
-    console.log lowDown
 
